@@ -1,16 +1,18 @@
 package proyectomercado;
 
 import java.util.Scanner;
-
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 public class ProyectoMercado {
 
-    public static void main(String[] args) {
+    public static void main(String[] args)throws IOException {
         PapeleriayUtiles Bic = new PapeleriayUtiles("Lapices y plumas Bic Pack 6pcs", 12033, 10);
         FarmaciaEHigiene Kleenex = new FarmaciaEHigiene("Paquete de pañuelos Kleenex", 93027, 7);
         Congelados Bachoco = new Congelados("Pechuga 600gr Bachoco", 92971, 9);
         Snacks Doritos = new Snacks("Doritos nacho 300gr", 68282, 26);
         MascotasyExteriores Pedigree = new MascotasyExteriores("Alimento Pedigree adulto 15kg", 35627, 8);
-
+        List<Pasillos> productos = Arrays.asList(Bic, Kleenex, Bachoco, Doritos, Pedigree);
         Scanner entrada = new Scanner(System.in);
         int n;
         int i;
@@ -120,6 +122,27 @@ public class ProyectoMercado {
                     System.out.println("Numero de ID no encontrada");
                     break;
             }
+             } else if (i == 4) {
+            imprimirInventario(productos);
+        } else {
+            System.out.println("Opción no válida");
+        }
+    }
+
+            public static void imprimirInventario(List<Pasillos> productos) {
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:/Users/usuario/Desktop/Nueva carpeta/inventario.txt"))) {
+                    for (Pasillos producto : productos) {
+                        writer.write(producto.toString());
+                        writer.newLine();
+                    }
+                    System.out.println("Inventario impreso en inventario.txt");
+                } catch (IOException e) {
+                    System.out.println("Ocurrió un error al escribir el archivo: " + e.getMessage());
+                }
+            }
+        }
+
+
         }
     }
 
