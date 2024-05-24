@@ -130,6 +130,7 @@ public class ProyectoMercado {
     }
 
             public static void imprimirInventario(List<Pasillos> productos) {
+                //esta parte en el fileWriter poner la ruta a desear
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:/Users/usuario/Desktop/Nueva carpeta/inventario.txt"))) {
                     for (Pasillos producto : productos) {
                         writer.write(producto.toString());
